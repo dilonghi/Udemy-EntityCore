@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190305181155_FinalizandoEntidades.cs" />
+    <Compile Remove="Migrations\20190305182812_FinalizandoEntidades.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Config\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
