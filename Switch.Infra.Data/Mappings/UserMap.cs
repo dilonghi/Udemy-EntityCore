@@ -12,9 +12,21 @@ namespace Switch.Infra.Data.Mappings
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Birthdate).IsRequired();
-            builder.Property(x => x.Email).HasColumnType("varchar(160)").IsRequired();
-            builder.Property(x => x.FirstName).HasColumnType("varchar(60)").IsRequired();
-            builder.Property(x => x.LastName).HasColumnType("varchar(60)").IsRequired();
+            builder.Property(x => x.Email.Address)
+                .HasColumnName("Email")
+                .HasColumnType("varchar(160)")
+                .IsRequired();
+
+            builder.Property(x => x.Name.FirstName)
+                .HasColumnName("FirstName")
+                .HasColumnType("varchar(60)")
+                .IsRequired();
+
+            builder.Property(x => x.Name.LastName)
+                .HasColumnName("LastName")
+                .HasColumnType("varchar(60)")
+                .IsRequired();
+
             builder.Property(x => x.Password).HasMaxLength(1024).IsRequired();
             builder.Property(x => x.ImageUrl).HasMaxLength(1024).IsRequired();
             builder.Property(x => x.Sexo).IsRequired();

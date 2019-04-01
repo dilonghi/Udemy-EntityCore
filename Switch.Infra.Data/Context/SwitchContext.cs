@@ -10,6 +10,7 @@ namespace Switch.Infra.Data.Context
     {
         public IConfiguration Configuration { get; }
 
+
         public DbSet<User> User { get; set; }
         public DbSet<Post> Post { get; set; }
         public DbSet<RelationshipStatus> RelationshipStatus { get; set; }
@@ -26,14 +27,12 @@ namespace Switch.Infra.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(Settings.ConnectionString);
-
-
+            optionsBuilder.UseLazyLoadingProxies(false);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder = EntityConfigurations(modelBuilder);
-
             base.OnModelCreating(modelBuilder);
         }
 
