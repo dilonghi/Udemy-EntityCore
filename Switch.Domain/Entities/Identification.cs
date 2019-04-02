@@ -1,14 +1,15 @@
-﻿using Switch.Domain.Enums;
+﻿using Switch.Domain.Core.Entities;
+using Switch.Domain.Enums;
+using System;
 
 namespace Switch.Domain.Entities
 {
-    public class Identification
+    public class Identification : Entity
     {
-        public int Id { get; set; }
         public ETipoDocumento TipoDocumento { get; set; }
         public string Numero { get; set; }
 
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public virtual User User { get; set; }
     }
 }

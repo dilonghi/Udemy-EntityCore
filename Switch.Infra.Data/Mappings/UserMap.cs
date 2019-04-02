@@ -11,21 +11,33 @@ namespace Switch.Infra.Data.Mappings
             builder.ToTable("Users");
 
             builder.HasKey(x => x.Id);
+
             builder.Property(x => x.Birthdate).IsRequired();
-            builder.Property(x => x.Email.Address)
-                .HasColumnName("Email")
-                .HasColumnType("varchar(160)")
-                .IsRequired();
 
-            builder.Property(x => x.Name.FirstName)
-                .HasColumnName("FirstName")
-                .HasColumnType("varchar(60)")
-                .IsRequired();
+            builder.OwnsOne(c => c.Email, x =>
+            {
+                x.Property(p => p.Address)
+                    .HasColumnName("Email")
+                    .HasColumnType("varchar(160)")
+                    .IsRequired();
+            });
 
-            builder.Property(x => x.Name.LastName)
-                .HasColumnName("LastName")
-                .HasColumnType("varchar(60)")
-                .IsRequired();
+            builder.OwnsOne(c => c.Name, x =>
+            {
+                x.Property(p => p.FirstName)
+                    .HasColumnName("FirstName")
+                    .HasColumnType("varchar(60)")
+                    .IsRequired();
+            });
+
+            builder.OwnsOne(c => c.Name, x =>
+            {
+                x.Property(p => p.LastName)
+                    .HasColumnName("LastName")
+                    .HasColumnType("varchar(60)")
+                    .IsRequired();
+            });
+
 
             builder.Property(x => x.Password).HasMaxLength(1024).IsRequired();
             builder.Property(x => x.ImageUrl).HasMaxLength(1024).IsRequired();
@@ -39,7 +51,7 @@ namespace Switch.Infra.Data.Mappings
             builder.HasMany(x => x.Posts).WithOne(x => x.User);
             builder.HasMany(x => x.WorkCompanies).WithOne(x => x.User);
             builder.HasMany(x => x.EducationalInstitutions).WithOne(x => x.User);
-            builder.HasMany(x => x.Friends).WithOne(x => x.User).OnDelete(DeleteBehavior.Restrict); 
+            builder.HasMany(x => x.Friends).WithOne(x => x.User).OnDelete(DeleteBehavior.Restrict);
             builder.HasMany(x => x.Comments).WithOne(x => x.User);
             builder.HasMany(x => x.UserGroups).WithOne(x => x.User);
 

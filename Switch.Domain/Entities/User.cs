@@ -31,7 +31,6 @@ namespace Switch.Domain.Entities
 
         }
 
-        //public Guid Id { get; private set; }
         public Name Name { get; private set; }
         public Email Email { get; private set; }
         public string Mobile { get; private set; }

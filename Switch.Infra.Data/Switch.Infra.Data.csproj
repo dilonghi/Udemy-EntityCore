@@ -7,6 +7,7 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190305181155_FinalizandoEntidades.cs" />
     <Compile Remove="Migrations\20190305182812_FinalizandoEntidades.cs" />
+    <Compile Remove="Migrations\20190401235449_v4.cs" />
   </ItemGroup>
 
   <ItemGroup>

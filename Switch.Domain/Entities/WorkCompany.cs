@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Switch.Domain.Core.Entities;
+using System;
 
 namespace Switch.Domain.Entities
 {
-    public class WorkCompany
+    public class WorkCompany : Entity
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public virtual User User { get; set; }
 
         public string Name { get; set; }

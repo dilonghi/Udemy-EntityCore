@@ -24,7 +24,10 @@ namespace Switch.Infra.Data.Repositories
             return DbSet.FirstOrDefault(x => x.Id == id);
         }
 
-        
+        public User GetByEmail(string email)
+        {
+            return DbSet.AsNoTracking().FirstOrDefault(x => x.Email.Address == email);
+        }
 
         public void Add(User user)
         {
@@ -38,6 +41,12 @@ namespace Switch.Infra.Data.Repositories
             entry.State = EntityState.Modified;
         }
 
+
+        public void Dispose()
+        {
+            _context.Dispose();
+            GC.SuppressFinalize(this);
+        }
         //public bool DocumentExists(string document)
         //{
         //    return _context.Customer.Any(x => x.Document.Number == document);

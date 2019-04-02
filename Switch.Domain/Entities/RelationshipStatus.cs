@@ -1,4 +1,5 @@
-﻿using Switch.Domain.Enums;
+﻿using Switch.Domain.Core.Entities;
+using Switch.Domain.Enums;
 
 namespace Switch.Domain.Entities
 {

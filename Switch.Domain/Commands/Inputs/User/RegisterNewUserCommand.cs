@@ -10,7 +10,7 @@ namespace Switch.Domain.Commands.Inputs.User
                                         DateTime birthdate, ESexo sexo, string imagem)
         {
             FirstName = firstname;
-            LasttName = lastname;
+            LastName = lastname;
             Email = email;
             Mobile = mobile;
             Password = password;

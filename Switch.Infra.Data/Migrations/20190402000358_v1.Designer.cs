@@ -10,8 +10,8 @@ using Switch.Infra.Data.Context;
 namespace Switch.Infra.Data.Migrations
 {
     [DbContext(typeof(SwitchContext))]
-    [Migration("20190305183058_FinalizandoEntidades")]
-    partial class FinalizandoEntidades
+    [Migration("20190402000358_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,8 @@ namespace Switch.Infra.Data.Migrations
 
             modelBuilder.Entity("Switch.Domain.Entities.Comment", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -33,7 +32,7 @@ namespace Switch.Infra.Data.Migrations
 
                     b.Property<DateTime>("PublishDate");
 
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
@@ -44,9 +43,8 @@ namespace Switch.Infra.Data.Migrations
 
             modelBuilder.Entity("Switch.Domain.Entities.EducationalInstitution", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime?>("GraduateYear");
 
@@ -56,7 +54,7 @@ namespace Switch.Infra.Data.Migrations
 
                     b.Property<bool>("StillStudying");
 
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
@@ -67,22 +65,23 @@ namespace Switch.Infra.Data.Migrations
 
             modelBuilder.Entity("Switch.Domain.Entities.Friend", b =>
                 {
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.Property<int>("UserFriendId");
 
+                    b.Property<Guid?>("UserFriendId1");
+
                     b.HasKey("UserId", "UserFriendId");
 
-                    b.HasIndex("UserFriendId");
+                    b.HasIndex("UserFriendId1");
 
                     b.ToTable("Friends");
                 });
 
             modelBuilder.Entity("Switch.Domain.Entities.Group", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -103,9 +102,8 @@ namespace Switch.Infra.Data.Migrations
 
             modelBuilder.Entity("Switch.Domain.Entities.Identification", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Numero")
                         .IsRequired()
@@ -113,7 +111,7 @@ namespace Switch.Infra.Data.Migrations
 
                     b.Property<int>("TipoDocumento");
 
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
@@ -125,13 +123,14 @@ namespace Switch.Infra.Data.Migrations
 
             modelBuilder.Entity("Switch.Domain.Entities.Post", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ContentUrl");
 
                     b.Property<int>("GroupId");
+
+                    b.Property<Guid?>("GroupId1");
 
                     b.Property<DateTime>("PublishDate");
 
@@ -139,11 +138,11 @@ namespace Switch.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
+                    b.HasIndex("GroupId1");
 
                     b.HasIndex("UserId");
 
@@ -226,27 +225,14 @@ namespace Switch.Infra.Data.Migrations
 
             modelBuilder.Entity("Switch.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Birthdate");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(160)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("varchar(60)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasMaxLength(1024);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("varchar(60)");
 
                     b.Property<string>("Mobile")
                         .HasColumnType("varchar(35)");
@@ -272,26 +258,27 @@ namespace Switch.Infra.Data.Migrations
 
             modelBuilder.Entity("Switch.Domain.Entities.UserGroup", b =>
                 {
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.Property<int>("GroupId");
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<Guid?>("GroupId1");
+
                     b.Property<bool>("IsAdmin");
 
                     b.HasKey("UserId", "GroupId");
 
-                    b.HasIndex("GroupId");
+                    b.HasIndex("GroupId1");
 
                     b.ToTable("UserGroups");
                 });
 
             modelBuilder.Entity("Switch.Domain.Entities.WorkCompany", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("AdmissionDate");
 
@@ -303,7 +290,7 @@ namespace Switch.Infra.Data.Migrations
 
                     b.Property<DateTime?>("OutDate");
 
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
@@ -332,8 +319,7 @@ namespace Switch.Infra.Data.Migrations
                 {
                     b.HasOne("Switch.Domain.Entities.User", "UserFriend")
                         .WithMany()
-                        .HasForeignKey("UserFriendId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserFriendId1");
 
                     b.HasOne("Switch.Domain.Entities.User", "User")
                         .WithMany("Friends")
@@ -353,8 +339,7 @@ namespace Switch.Infra.Data.Migrations
                 {
                     b.HasOne("Switch.Domain.Entities.Group", "Group")
                         .WithMany("Posts")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GroupId1");
 
                     b.HasOne("Switch.Domain.Entities.User", "User")
                         .WithMany("Posts")
@@ -371,14 +356,56 @@ namespace Switch.Infra.Data.Migrations
                     b.HasOne("Switch.Domain.Entities.SearchFor", "SearchFor")
                         .WithMany()
                         .HasForeignKey("SearchForId");
+
+                    b.OwnsOne("Switch.Domain.ValueObjects.Email", "Email", b1 =>
+                        {
+                            b1.Property<Guid>("UserId");
+
+                            b1.Property<string>("Address")
+                                .IsRequired()
+                                .HasColumnName("Email")
+                                .HasColumnType("varchar(160)");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("Users");
+
+                            b1.HasOne("Switch.Domain.Entities.User")
+                                .WithOne("Email")
+                                .HasForeignKey("Switch.Domain.ValueObjects.Email", "UserId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
+
+                    b.OwnsOne("Switch.Domain.ValueObjects.Name", "Name", b1 =>
+                        {
+                            b1.Property<Guid>("UserId");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasColumnName("FirstName")
+                                .HasColumnType("varchar(60)");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasColumnName("LastName")
+                                .HasColumnType("varchar(60)");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("Users");
+
+                            b1.HasOne("Switch.Domain.Entities.User")
+                                .WithOne("Name")
+                                .HasForeignKey("Switch.Domain.ValueObjects.Name", "UserId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
                 });
 
             modelBuilder.Entity("Switch.Domain.Entities.UserGroup", b =>
                 {
                     b.HasOne("Switch.Domain.Entities.Group", "Group")
                         .WithMany("UserGroups")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GroupId1");
 
                     b.HasOne("Switch.Domain.Entities.User", "User")
                         .WithMany("UserGroups")

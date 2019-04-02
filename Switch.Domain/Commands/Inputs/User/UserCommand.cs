@@ -8,7 +8,7 @@ namespace Switch.Domain.Commands.Inputs.User
     {
         public Guid Id { get; protected set; }
         public string FirstName { get; protected set; }
-        public string LasttName { get; protected set; }
+        public string LastName { get; protected set; }
         public string Email { get; protected set; }
         public string Mobile { get; protected set; }
         public string Password { get; protected set; }

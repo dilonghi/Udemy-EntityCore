@@ -11,7 +11,7 @@ namespace Switch.Domain.Validations
             RuleFor(c => c.FirstName)
                 .NotEmpty().WithMessage("Please ensure you have entered the FirstName")
                 .Length(2, 150).WithMessage("The Name must have between 2 and 150 characters");
-            RuleFor(c => c.LasttName)
+            RuleFor(c => c.LastName)
                 .NotEmpty().WithMessage("Please ensure you have entered the LasttName")
                 .Length(2, 150).WithMessage("The Name must have between 2 and 150 characters");
         }
