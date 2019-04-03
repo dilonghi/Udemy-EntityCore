@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Switch.CrossCutting;
 using Switch.Domain.Entities;
 using Switch.Infra.Data.Mappings;
@@ -9,7 +10,12 @@ namespace Switch.Infra.Data.Context
     public class SwitchContext : DbContext
     {
         public IConfiguration Configuration { get; }
+        private readonly IHostingEnvironment _env;
 
+        public SwitchContext(IHostingEnvironment env)
+        {
+            _env = env;
+        }
 
         public DbSet<User> User { get; set; }
         public DbSet<Post> Post { get; set; }
@@ -24,12 +30,7 @@ namespace Switch.Infra.Data.Context
         public DbSet<Friend> Friend { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(Settings.ConnectionString);
-            optionsBuilder.UseLazyLoadingProxies(false);
-        }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder = EntityConfigurations(modelBuilder);
@@ -53,5 +54,19 @@ namespace Switch.Infra.Data.Context
 
             return modelBuilder;
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // get the configuration from the app settings
+            var config = new ConfigurationBuilder()
+                .SetBasePath(_env.ContentRootPath)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            // define the database to use
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseLazyLoadingProxies(false);
+        }
+
     }
 }

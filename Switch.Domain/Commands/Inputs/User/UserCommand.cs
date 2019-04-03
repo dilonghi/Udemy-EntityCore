@@ -1,5 +1,5 @@
-﻿using Switch.Domain.Core.Commands;
-using Switch.Domain.Enums;
+﻿using Switch.CrossCutting.Shared.Enums;
+using Switch.Domain.Core.Commands;
 using System;
 
 namespace Switch.Domain.Commands.Inputs.User

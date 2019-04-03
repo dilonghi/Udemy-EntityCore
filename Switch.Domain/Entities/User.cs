@@ -1,5 +1,5 @@
-﻿using Switch.Domain.Core.Entities;
-using Switch.Domain.Enums;
+﻿using Switch.CrossCutting.Shared.Enums;
+using Switch.Domain.Core.Entities;
 using Switch.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;

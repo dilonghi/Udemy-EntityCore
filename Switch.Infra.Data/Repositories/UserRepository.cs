@@ -3,6 +3,7 @@ using Switch.Domain.Entities;
 using Switch.Domain.Interfaces.Repositories;
 using Switch.Infra.Data.Context;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Switch.Infra.Data.Repositories
@@ -19,6 +20,11 @@ namespace Switch.Infra.Data.Repositories
         }
 
 
+        public IQueryable<User> GetAll()
+        {
+            return DbSet;
+
+        }
         public User GetById(Guid id)
         {
             return DbSet.FirstOrDefault(x => x.Id == id);

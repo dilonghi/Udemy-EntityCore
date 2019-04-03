@@ -1,5 +1,5 @@
-﻿using Switch.Domain.Core.Events;
-using Switch.Domain.Enums;
+﻿using Switch.CrossCutting.Shared.Enums;
+using Switch.Domain.Core.Events;
 using System;
 
 namespace Switch.Domain.Events

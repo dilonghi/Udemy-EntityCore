@@ -1,4 +1,4 @@
-﻿namespace Switch.Domain.Enums
+﻿namespace Switch.CrossCutting.Shared.Enums
 {
     public enum ESexo
     {

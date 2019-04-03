@@ -1,4 +1,4 @@
-﻿using Switch.Domain.Enums;
+﻿using Switch.CrossCutting.Shared.Enums;
 using Switch.Domain.Validations;
 using System;
 
