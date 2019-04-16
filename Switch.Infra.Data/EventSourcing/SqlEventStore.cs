@@ -26,6 +26,6 @@ namespace Switch.Infra.Data.EventSourcing
 
             _eventStoreRepository.Store(storedEvent);
         }
-    {
+
     }
 }

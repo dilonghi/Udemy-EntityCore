@@ -11,7 +11,11 @@ namespace Switch.Appilcation.AutoMapper
             CreateMap<UserViewModel, RegisterNewUserCommand>()
                 .ConstructUsing(c => new RegisterNewUserCommand(c.FirstName, c.LastName, c.Email, c.Mobile, c.Password,
                                                                 c.Birthdate, c.Sexo, c.ImageUrl));
-            
+
+            CreateMap<UserViewModel, UpdateUserCommand>()
+                .ConstructUsing(c => new UpdateUserCommand(c.Id, c.FirstName, c.LastName, c.Email, c.Mobile, c.Password,
+                                                           c.Birthdate, c.Sexo, c.ImageUrl));
+
         }
     }
 }

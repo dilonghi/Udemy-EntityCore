@@ -3,7 +3,6 @@ using Switch.Domain.Entities;
 using Switch.Domain.Interfaces.Repositories;
 using Switch.Infra.Data.Context;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Switch.Infra.Data.Repositories
@@ -22,9 +21,10 @@ namespace Switch.Infra.Data.Repositories
 
         public IQueryable<User> GetAll()
         {
-            return DbSet;
-
+            var retorno = DbSet;
+            return retorno;
         }
+
         public User GetById(Guid id)
         {
             return DbSet.FirstOrDefault(x => x.Id == id);
@@ -45,14 +45,20 @@ namespace Switch.Infra.Data.Repositories
             var entry = _context.Entry(user);
             DbSet.Attach(user);
             entry.State = EntityState.Modified;
+            
         }
 
+        public void Remove(Guid id)
+        {
+            DbSet.Remove(DbSet.Find(id));
+        }
 
         public void Dispose()
         {
             _context.Dispose();
             GC.SuppressFinalize(this);
         }
+
         //public bool DocumentExists(string document)
         //{
         //    return _context.Customer.Any(x => x.Document.Number == document);

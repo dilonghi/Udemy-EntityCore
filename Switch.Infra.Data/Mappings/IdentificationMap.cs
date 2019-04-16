@@ -11,7 +11,7 @@ namespace Switch.Infra.Data.Mappings
             builder.ToTable("Identifications");
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.TipoDocumento);
+            //builder.Property(x => x..TipoDocumento);
             builder.Property(x => x.Numero).HasColumnType("varchar(14)").IsRequired();
             
         }

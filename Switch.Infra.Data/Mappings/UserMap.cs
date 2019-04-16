@@ -14,13 +14,15 @@ namespace Switch.Infra.Data.Mappings
 
             builder.Property(x => x.Birthdate).IsRequired();
 
-            builder.OwnsOne(c => c.Email, x =>
-            {
-                x.Property(p => p.Address)
-                    .HasColumnName("Email")
-                    .HasColumnType("varchar(160)")
-                    .IsRequired();
-            });
+            //builder.OwnsOne(c => c.Email, x =>
+            //{
+            //    x.Property(p => p.Address)
+            //        .HasColumnName("Email")
+            //        .HasColumnType("varchar(160)")
+            //        .IsRequired();
+            //});
+
+            builder.OwnsOne(p => p.Email).Property(ppu => ppu.Address).HasColumnName("Email").IsRequired();
 
             builder.OwnsOne(c => c.Name, x =>
             {

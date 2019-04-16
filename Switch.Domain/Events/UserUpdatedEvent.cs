@@ -4,9 +4,9 @@ using System;
 
 namespace Switch.Domain.Events
 {
-    public class UserRegisteredEvent : Event
+    public class UserUpdatedEvent : Event
     {
-        public UserRegisteredEvent(Guid id, string firstName, string lastName, string email, string mobile, 
+        public UserUpdatedEvent(Guid id, string firstName, string lastName, string email, string mobile, 
                                     string password, DateTime birthdate, ESexo sexo, string imageUrl)
         {
             Id = id;

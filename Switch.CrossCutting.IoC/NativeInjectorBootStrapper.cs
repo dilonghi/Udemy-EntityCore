@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Switch.Appilcation.Interfaces;
 using Switch.Appilcation.Services;
@@ -41,6 +42,8 @@ namespace Switch.CrossCutting.IoC
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewUserCommand, bool>, UserCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateUserCommand, bool>, UserCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveUserCommand, bool>, UserCommandHandler>();
 
             // Infra - Data
             services.AddScoped<IUserRepository, UserRepository>();

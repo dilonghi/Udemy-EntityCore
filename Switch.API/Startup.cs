@@ -8,12 +8,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Switch.API.Configurations;
+using Switch.CrossCutting.IoC;
 
 namespace Switch.API
 {
     public class Startup
     {
-        public static IConfiguration Configuration { get; set; }
+        public IConfiguration Configuration { get; }
 
         public Startup(IHostingEnvironment env)
         {
@@ -22,10 +23,10 @@ namespace Switch.API
                 .AddJsonFile("appsettings.json", true, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true);
 
-            if (env.IsDevelopment())
-            {
-                builder.AddUserSecrets<Startup>();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    builder.AddUserSecrets<Startup>();
+            //}
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -60,10 +61,10 @@ namespace Switch.API
             // .NET Native DI Abstraction
             RegisterServices(services);
 
-            var builder = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.json");
+            //var builder = new ConfigurationBuilder()
+            //        .AddJsonFile("appsettings.json");
 
-            Configuration = builder.Build();
+            //Configuration = builder.Build();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -73,9 +74,21 @@ namespace Switch.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            app.UseCors(c =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                c.AllowAnyHeader();
+                c.AllowAnyMethod();
+                c.AllowAnyOrigin();
+            });
+
+            app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Switch Project API v1.0");
             });
         }
 

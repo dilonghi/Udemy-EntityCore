@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Switch.CrossCutting;
 using Switch.Domain.Entities;
 using Switch.Infra.Data.Mappings;
 

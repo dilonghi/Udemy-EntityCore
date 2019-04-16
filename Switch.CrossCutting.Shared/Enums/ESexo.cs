@@ -1,4 +1,8 @@
-﻿namespace Switch.CrossCutting.Shared.Enums
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Switch.CrossCutting.Shared.Enums
 {
     public enum ESexo
     {

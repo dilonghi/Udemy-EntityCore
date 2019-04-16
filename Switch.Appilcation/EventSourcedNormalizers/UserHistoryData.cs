@@ -1,5 +1,4 @@
-﻿using Switch.CrossCutting.Shared.Enums;
-using System;
+﻿using System;
 
 namespace Switch.Appilcation.EventSourcedNormalizers
 {
@@ -13,7 +12,7 @@ namespace Switch.Appilcation.EventSourcedNormalizers
         public string Mobile { get; set; }
         public string Password { get; set; }
         public string Birthdate { get; set; }
-        public ESexo Sexo { get; set; }
+        //public ESexo Sexo { get; set; }
         public string ImageUrl { get; set; }
         public string When { get; set; }
         public string Who { get; set; }

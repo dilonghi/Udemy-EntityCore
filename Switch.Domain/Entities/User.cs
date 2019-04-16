@@ -8,8 +8,9 @@ namespace Switch.Domain.Entities
 {
     public class User : Entity
     {
-        public User(Name name, Email email, string mobile, string password, DateTime birthdate, ESexo sexo, string imagem)
+        public User(Guid id, Name name, Email email, string mobile, string password, DateTime birthdate, ESexo sexo, string imagem)
         {
+            Id = id;
             Name = name;
             Email = email;
             Mobile = mobile;
