@@ -9,6 +9,7 @@ namespace Switch.Domain.Events
         public UserUpdatedEvent(Guid id, string firstName, string lastName, string email, string mobile, 
                                     string password, DateTime birthdate, ESexo sexo, string imageUrl)
         {
+            AggregateId = id;
             Id = id;
             FirstName = firstName;
             LastName = lastName;

@@ -1,19 +1,28 @@
 ﻿using Switch.Domain.Core.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Switch.Domain.Entities
 {
     public class Post : Entity
     {
-        public string Title { get; set; }
-        public DateTime PublishDate { get; set; }
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; }
+        public Post(Guid id, string title, Guid userId, int groupId, string contentUrl)
+        {
+            Id = id;
+            Title = title;
+            PublishDate = DateTime.Now;
+            UserId = userId;
+            GroupId = groupId;
+            ContentUrl = contentUrl;
+        }
 
-        public int GroupId { get; set; }
+        protected Post() { }
+
+        public string Title { get; private set; }
+        public DateTime PublishDate { get; private set; }
+        public Guid UserId { get; private set; }
+        public virtual User User { get; set; }
+        public int GroupId { get; private set; }
         public virtual Group Group { get; set; }
-        public string ContentUrl { get; set; }
+        public string ContentUrl { get; private set; }
     }
 }

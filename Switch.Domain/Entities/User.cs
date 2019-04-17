@@ -1,6 +1,5 @@
 ﻿using Switch.CrossCutting.Shared.Enums;
 using Switch.Domain.Core.Entities;
-using Switch.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 
@@ -8,10 +7,11 @@ namespace Switch.Domain.Entities
 {
     public class User : Entity
     {
-        public User(Guid id, Name name, Email email, string mobile, string password, DateTime birthdate, ESexo sexo, string imagem)
+        public User(Guid id, string firstName, string lastName, string email, string mobile, string password, DateTime birthdate, ESexo sexo, string imagem)
         {
             Id = id;
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
             Email = email;
             Mobile = mobile;
             Password = password;
@@ -32,8 +32,11 @@ namespace Switch.Domain.Entities
 
         }
 
-        public Name Name { get; private set; }
-        public Email Email { get; private set; }
+        //public Name Name { get; private set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        //public Email Email { get; private set; }
         public string Mobile { get; private set; }
         public string Password { get; private set; }
         public DateTime Birthdate { get; private set; }

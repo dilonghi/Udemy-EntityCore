@@ -18,7 +18,8 @@ namespace Switch.Infra.Data.Repositories.EventSourcing
 
         public IList<StoredEvent> All(Guid aggregateId)
         {
-            return (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToList();
+            var result = (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToList();
+            return result;
         }
 
         public void Store(StoredEvent theEvent)

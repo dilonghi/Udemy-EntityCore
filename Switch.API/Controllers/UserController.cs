@@ -69,7 +69,7 @@ namespace Switch.API.Controllers
         }
 
         [HttpDelete]
-        [Route("user-management")]
+        [Route("user-management/{id:guid}")]
         public IActionResult Delete(Guid id)
         {
             _userAppService.Remove(id);

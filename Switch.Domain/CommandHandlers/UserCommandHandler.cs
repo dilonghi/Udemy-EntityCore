@@ -37,11 +37,12 @@ namespace Switch.Domain.CommandHandlers
                 return Task.FromResult(false);
             }
 
-            var name = new Name { FirstName = message.FirstName, LastName = message.LastName };
-            var email = new Email { Address = message.Email };
-            var user = new User(Guid.NewGuid(), name, email, message.Mobile, message.Password, message.Birthdate, message.Sexo, message.ImageUrl);
+            //var name = new Name { FirstName = message.FirstName, LastName = message.LastName };
+            //var email = new Email { Address = message.Email };
+            var user = new User(Guid.NewGuid(), message.FirstName, message.LastName, message.Email, message.Mobile, message.Password, 
+                                message.Birthdate, message.Sexo, message.ImageUrl);
 
-            if (_userRepository.GetByEmail(user.Email.Address) != null)
+            if (_userRepository.GetByEmail(user.Email) != null)
             {
                 Bus.RaiseEvent(new DomainNotification(message.MessageType, "The customer e-mail has already been taken."));
                 return Task.FromResult(false);
@@ -51,8 +52,8 @@ namespace Switch.Domain.CommandHandlers
 
             if (Commit())
             {
-                Bus.RaiseEvent(new UserRegisteredEvent(user.Id, user.Name.FirstName, user.Name.LastName, user.Email.Address,
-                                                        user.Mobile, user.Password, user.Birthdate, user.Sexo, user.ImageUrl));
+                Bus.RaiseEvent(new UserRegisteredEvent(user.Id, user.FirstName, user.LastName, user.Email,
+                                                       user.Mobile, user.Password, user.Birthdate, user.Sexo, user.ImageUrl));
             }
 
             return Task.FromResult(true);
@@ -66,12 +67,12 @@ namespace Switch.Domain.CommandHandlers
                 return Task.FromResult(false);
             }
 
-            var name = new Name { FirstName = message.FirstName, LastName = message.LastName };
-            var email = new Email { Address = message.Email };
-            var user = new User(message.Id, name, email, message.Mobile, message.Password, message.Birthdate, 
+            //var name = new Name { FirstName = message.FirstName, LastName = message.LastName };
+            //var email = new Email { Address = message.Email };
+            var user = new User(message.Id, message.FirstName, message.LastName, message.Email, message.Mobile, message.Password, message.Birthdate, 
                                 message.Sexo, message.ImageUrl);
 
-            var existingCustomer = _userRepository.GetByEmail(user.Email.Address);
+            var existingCustomer = _userRepository.GetByEmail(user.Email);
 
             if (existingCustomer != null && existingCustomer.Id != user.Id)
             {
@@ -86,7 +87,7 @@ namespace Switch.Domain.CommandHandlers
 
             if (Commit())
             {
-                Bus.RaiseEvent(new UserUpdatedEvent(user.Id, user.Name.FirstName, user.Name.LastName, user.Email.Address,
+                Bus.RaiseEvent(new UserUpdatedEvent(user.Id, user.FirstName, user.LastName, user.Email,
                                                     user.Mobile, user.Password, user.Birthdate, user.Sexo, user.ImageUrl));
             }
 

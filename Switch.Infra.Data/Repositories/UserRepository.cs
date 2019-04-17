@@ -32,7 +32,7 @@ namespace Switch.Infra.Data.Repositories
 
         public User GetByEmail(string email)
         {
-            return DbSet.AsNoTracking().FirstOrDefault(x => x.Email.Address == email);
+            return DbSet.AsNoTracking().FirstOrDefault(x => x.Email == email);
         }
 
         public void Add(User user)

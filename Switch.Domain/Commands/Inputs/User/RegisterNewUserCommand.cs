@@ -1,5 +1,5 @@
 ﻿using Switch.CrossCutting.Shared.Enums;
-using Switch.Domain.Validations;
+using Switch.Domain.Validations.User;
 using System;
 
 namespace Switch.Domain.Commands.Inputs.User

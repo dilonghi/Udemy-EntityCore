@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Switch.Appilcation.ViewModels;
+using Switch.Domain.Commands.Inputs.Post;
 using Switch.Domain.Commands.Inputs.User;
 
 namespace Switch.Appilcation.AutoMapper
@@ -15,6 +16,9 @@ namespace Switch.Appilcation.AutoMapper
             CreateMap<UserViewModel, UpdateUserCommand>()
                 .ConstructUsing(c => new UpdateUserCommand(c.Id, c.FirstName, c.LastName, c.Email, c.Mobile, c.Password,
                                                            c.Birthdate, c.Sexo, c.ImageUrl));
+
+            CreateMap<PostViewModel, RegisterNewPostCommand>()
+                .ConstructUsing(c => new RegisterNewPostCommand(c.Title, c.UserId, c.GroupId, c.ContentUrl));
 
         }
     }

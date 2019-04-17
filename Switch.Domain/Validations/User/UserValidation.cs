@@ -2,7 +2,7 @@
 using Switch.Domain.Commands.Inputs.User;
 using System;
 
-namespace Switch.Domain.Validations
+namespace Switch.Domain.Validations.User
 {
     public class UserValidation<T> : AbstractValidator<T> where T : UserCommand
     {

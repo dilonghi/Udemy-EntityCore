@@ -14,7 +14,6 @@ namespace Switch.Infra.Data.Mappings
             builder.Property(x => x.Title).HasColumnType("varchar(250)").IsRequired();
             builder.Property(x => x.PublishDate).IsRequired();
 
-            
         }
     }
 }

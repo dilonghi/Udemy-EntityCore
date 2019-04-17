@@ -5,6 +5,7 @@ using Switch.Appilcation.Interfaces;
 using Switch.Appilcation.Services;
 using Switch.CrossCutting.Bus;
 using Switch.Domain.CommandHandlers;
+using Switch.Domain.Commands.Inputs.Post;
 using Switch.Domain.Commands.Inputs.User;
 using Switch.Domain.Core.Bus;
 using Switch.Domain.Core.Events;
@@ -35,6 +36,7 @@ namespace Switch.CrossCutting.IoC
 
             // Application
             services.AddScoped<IUserAppService, UserAppService>();
+            services.AddScoped<IPostAppService, PostAppService>();
 
             // Domain - Events
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
@@ -45,8 +47,11 @@ namespace Switch.CrossCutting.IoC
             services.AddScoped<IRequestHandler<UpdateUserCommand, bool>, UserCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveUserCommand, bool>, UserCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewPostCommand, bool>, PostCommandHandler>();
+
             // Infra - Data
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<IUow, Uow>();
             services.AddScoped<SwitchContext>();
 
