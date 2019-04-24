@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Elmah.Io.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Switch.API.Configurations;
 using Switch.CrossCutting.IoC;
+using System;
 
 namespace Switch.API
 {
@@ -34,6 +36,7 @@ namespace Switch.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching();
             services.AddMvc(options =>
             {
                 options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
@@ -54,6 +57,7 @@ namespace Switch.API
                     License = new License { Name = "MIT", Url = "https://github.com/EduardoPires/EquinoxProject/blob/master/LICENSE" }
                 });
             });
+
 
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
@@ -81,7 +85,8 @@ namespace Switch.API
                 c.AllowAnyOrigin();
             });
 
-            app.UseHttpsRedirection();
+            app.UseResponseCaching();
+            //app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
 
@@ -90,6 +95,8 @@ namespace Switch.API
             {
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "Switch Project API v1.0");
             });
+
+            app.UseElmahIo("13be47b96fcf4a69ad20b7fa526488fc", new Guid("1181944d-0b99-480f-80ea-ae115585745e"));
         }
 
         private static void RegisterServices(IServiceCollection services)

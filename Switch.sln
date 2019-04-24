@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Domain", "4-Domain", "{35D41FD1-B214-4074-A9DF-83FE50F4AF32}"
 EndProject
@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Switch.CrossCutting.IoC", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Switch.CrossCutting.Bus", "Switch.CrossCutting.Bus\Switch.CrossCutting.Bus.csproj", "{39739743-C7DD-4811-9592-75393E73E138}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Switch.CrossCutting.Shared", "Switch.CrossCutting.Shared\Switch.CrossCutting.Shared.csproj", "{D7C76DD8-4917-44BB-B35B-3C538A847054}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Switch.CrossCutting.Shared", "Switch.CrossCutting.Shared\Switch.CrossCutting.Shared.csproj", "{D7C76DD8-4917-44BB-B35B-3C538A847054}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Switch.CrossCutting.Identity", "Switch.CrossCutting.Identity\Switch.CrossCutting.Identity.csproj", "{C51F44C4-2828-46E3-BA12-CD99F4E8F37B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{D7C76DD8-4917-44BB-B35B-3C538A847054}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C76DD8-4917-44BB-B35B-3C538A847054}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C76DD8-4917-44BB-B35B-3C538A847054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C51F44C4-2828-46E3-BA12-CD99F4E8F37B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C51F44C4-2828-46E3-BA12-CD99F4E8F37B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C51F44C4-2828-46E3-BA12-CD99F4E8F37B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C51F44C4-2828-46E3-BA12-CD99F4E8F37B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{88966DB3-118C-410E-9DF0-087CBC2646DA} = {ACCC3A78-F957-49C3-BADA-C4A62F9F49E7}
 		{39739743-C7DD-4811-9592-75393E73E138} = {ACCC3A78-F957-49C3-BADA-C4A62F9F49E7}
 		{D7C76DD8-4917-44BB-B35B-3C538A847054} = {ACCC3A78-F957-49C3-BADA-C4A62F9F49E7}
+		{C51F44C4-2828-46E3-BA12-CD99F4E8F37B} = {ACCC3A78-F957-49C3-BADA-C4A62F9F49E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6514BD2A-73A8-4599-A2E4-480D50C58577}

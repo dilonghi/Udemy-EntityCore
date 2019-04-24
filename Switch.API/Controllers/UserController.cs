@@ -24,6 +24,7 @@ namespace Switch.API.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("user-management")]
+        [ResponseCache(Duration = 60)]
         public IActionResult Get()
         {
             return Response(_userAppService.GetAll());
@@ -32,6 +33,7 @@ namespace Switch.API.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("user-management/{id:guid}")]
+        [ResponseCache(Duration = 10)]
         public IActionResult Get(Guid id)
         {
             return Response(_userAppService.GetById(id));
